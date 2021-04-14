@@ -19,11 +19,12 @@
 def what_to_play
     puts "Welcome \n"
     puts "What would you like to play \n"
-    puts "To play the game, press 1 \nTo launch a simulation, press 2 \nTo exit, press 3"
+    puts "To play the game, press 1 \nTo launch a simulation, press 2 \nTo see the rules, press 3\nTo exit, press 4"
     what_to_do = case enter_choice
         when 1 then game_program
         when 2 then stat_program
-        when 3 then exit
+        when 3 then display_rules
+        when 4 then exit
         else 
             puts "Sorry, I did not understand"
             puts "Try again" 
@@ -38,39 +39,34 @@ def enter_choice
     return player_choice
 end
 
+def display_rules
+    print "\n \n"
+    puts "---RULES---"
+    puts "Your charater is stucked in a dungeon"
+    puts "He must reach the top of the stairs to escape "
+    puts "At the beginning of the game your start totally down, and 10 stairs seperate you from the top "
+    puts "You have control over your character movement by launching the dice"
+    print "\n"
+    puts "If you get 5 or 6, your character goes up 1 stair"
+    puts "If you get 1, your character goes down 1 stair"
+    puts "And if you get 2, 3, or 4, nothing happens"
+    print "\n \n"
+    
+    puts "To come back to the main menu, press 0"
+    what_to_do = case enter_choice
+        when 0 then what_to_play
+        else 
+            puts "Sorry, I did not understand"
+            puts "Try again" 
+            print "\n \n"
+            enter_choice
+    end
+end
+
+
 def game_program
     print "\n"
     puts "Welcome on THP, the Game"
-
-    def enter_choice
-        print "> "
-        player_choice = gets.to_i
-        return player_choice
-    end
-
-    def display_rules
-        print "\n \n"
-        puts "---RULES---"
-        puts "Your charater is stucked in a dungeon"
-        puts "He must reach the top of the stairs to escape "
-        puts "At the beginning of the game your start totally down, and 10 stairs seperate you from the top "
-        puts "You have control over your character movement by launching the dice"
-        print "\n"
-        puts "If you get 5 or 6, your character goes up 1 stair"
-        puts "If you get 1, your character goes down 1 stair"
-        puts "And if you get 2, 3, or 4, nothing happens"
-        print "\n \n"
-        
-        puts "To come back to the main menu, press 0"
-        what_to_do = case enter_choice
-            when 0 then display_game
-            else 
-                puts "Sorry, I did not understand"
-                puts "Try again" 
-                print "\n \n"
-                display_rules
-        end
-    end
 
 
     def start_game
@@ -80,21 +76,6 @@ def game_program
         puts "---NEW GAME---"
         print "\n \n"
         game(choose_your_character)
-    end
-
-    def display_game
-        print "\n \n"
-        puts "To launch a new game, press 1 \nTo see the rules, press 2 \nTo exit, press 3"
-            what_to_do = case enter_choice
-                when 1 then start_game
-                when 2 then display_rules
-                when 3 then exit 
-                else 
-                    puts "Sorry, I did not understand"
-                    puts "Try again" 
-                    print "\n \n"
-                    display_game
-            end
     end
 
     def throw_dice 
@@ -153,7 +134,7 @@ def game_program
         puts "To launch a new game, press 1 \nTo go back to the main menu, press 0 \nTo exit, press 3"
         what_to_do = case enter_choice
             when 1 then start_game
-            when 0 then display_game  
+            when 0 then what_to_play 
             when 3 then exit
             else 
                 puts "Sorry, I did not understand"
@@ -183,7 +164,7 @@ def game_program
         return character_choice
     end
 
-    display_game
+    start_game
 
 end
 
@@ -238,7 +219,6 @@ def stat_program
 
     def enter_score_into_array(array_score, score)
         array_score.push(score)
-        puts array_score
         return array_score
     end
 

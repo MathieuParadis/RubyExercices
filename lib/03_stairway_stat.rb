@@ -65,7 +65,6 @@ end
 
 def enter_score_into_array(array_score, score)
     array_score.push(score)
-    puts array_score
     return array_score
 end
 
@@ -78,7 +77,7 @@ end
 def simulation(n)
 
 scores = []
-    for i in 1..n
+    for i in 0..n
         array_scores = enter_score_into_array(scores, game)
     end
     average_on_n_games = calcule_average(array_scores, n)
